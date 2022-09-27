@@ -42,13 +42,13 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    print(request.__dict__)
-
+    request.get_data()
+    logger.info(request.json)
     
     # TODO add your implementation here to replace the random response
     
     return "T"
-"""
+    """
     global zombie_list
     global elapsed_time
     global target_user
