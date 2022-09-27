@@ -17,7 +17,6 @@ import os
 import math
 import logging
 import random
-import json
 from flask import Flask, request
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
@@ -43,11 +42,12 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    request.get_data()
-    logger.info(request.json)
+    print(request.__dict__)
 
     
-    return moves[random.randrange(len(moves))]
+    # TODO add your implementation here to replace the random response
+    
+    return "T"
 """
     global zombie_list
     global elapsed_time
