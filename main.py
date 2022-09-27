@@ -109,26 +109,26 @@ def move():
         my_y = my["y"]
 
         # 1. x 좌표 맞추고 (만약 벽에 붙어있다면 같이 벽에 붙기)
-        if target_x - my_x > 0:
+        if target_pos[0] - my_x > 0:
             # 오른쪽 이동을 위해 방향을 E로 맞추기
             if my_direction != "E": return "R"
             # 방향 맞췄으면 전진
             else: return "F"
-        elif target_x - my_x < 0:
+        elif target_pos[0] - my_x < 0:
             if my_direction != "W": return "R"
             else: return "F"
-        elif target_x == my_x:
+        elif target_pos[0] == my_x:
             # 2. y 좌표 맞추고 (만약 벽에 붙어있다면 같이 벽에 붙기)
-            if target_y - my_y > 0:
+            if target_pos[1] - my_y > 0:
                 # 오른쪽 이동을 위해 방향을 E로 맞추기
                 if my_direction != "N": return "R"
                 # 방향 맞췄으면 전진
                 else: return "F"
-            elif target_y - my_y < 0:
+            elif target_pos[1] - my_y < 0:
                 if my_direction != "S": return "R"
                 else: return "F"
 
-            elif target_y == my_y:
+            elif target_pos[1] == my_y:
                 # 3. 방향 맞추고
                 if target_direction != my_direction: return "R"
                 # 4. 쏘세요~
