@@ -17,6 +17,7 @@ import os
 import math
 import logging
 import random
+import json
 from flask import Flask, request
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
@@ -42,18 +43,26 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
+    request.get_data()
+    logger.info(request.json)
+
+    
+    return moves[random.randrange(len(moves))]
+"""
     global zombie_list
     global elapsed_time
     global target_user
 
     elapsed_time += 1
     
-    request.get_data()
-    logger.info(request.json)
+    print(request)
+    input_json = request.get_data()
+    logger.info(input_json)
     
     dims = input_json["arena"]["dims"]
     # TODO add your implementation here to replace the random response
-    input_json = request.json
+
+    print(input_json)
 
 
     try:
@@ -135,8 +144,9 @@ def move():
                     # 4. 쏘세요~
                     else: "T"
     # 에러날바에는 랜덤 리턴
-    except Exception:
+    except Exception as e:
         return moves[random.randrange(len(moves))]          
+"""
 
 if __name__ == "__main__":
     app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
