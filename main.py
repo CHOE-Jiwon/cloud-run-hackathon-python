@@ -76,8 +76,8 @@ def move():
                     "cur_direction": user_value["direction"]
                 })
 
-                if zombie_list[user]["pos_x"] == zombie_list["cur_x"]
-                    and zombie_list[user]["pos_y"] == zombie_list["cur_y"]
+                if zombie_list[user]["pos_x"] == zombie_list["cur_x"] \
+                    and zombie_list[user]["pos_y"] == zombie_list["cur_y"] \
                     and zombie_list[user]["pos_direction"] == zombie_list["cur_direction"]:
                     zombie_list[user]["stop_elapsed_time"] += 1
 
@@ -91,8 +91,14 @@ def move():
             target_x = input_json["arena"]["state"]["x"]
             target_y = input_json["arena"]["state"]["y"]
             target_direction = input_json["arena"]["state"]["direction"]
-        
+
             target_pos = (target_x - direction[target_direction], target_y - direction[target_direction])
+        
+            # 벽에 붙어 있는 애들은 제외시키기
+            if target_x in [0, dims[0]] or target_y in [0, dims[1]]:
+                target_user = None
+
+                return "T"
         
         # 내 위치 정보 가져오기
         href = input_json["_links"]["self"]["href"]
