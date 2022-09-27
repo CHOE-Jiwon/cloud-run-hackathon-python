@@ -38,7 +38,6 @@ direction = {
 
 @app.route("/", methods=['GET'])
 def index():
-    dims = input_json["arena"]["dims"]
     return "Let the battle begin!"
 
 @app.route("/", methods=['POST'])
@@ -52,6 +51,7 @@ def move():
     request.get_data()
     logger.info(request.json)
     
+    dims = input_json["arena"]["dims"]
     # TODO add your implementation here to replace the random response
     input_json = request.json
 
